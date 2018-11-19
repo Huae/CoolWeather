@@ -63,3 +63,8 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
+# File generate by eclipse and adt
+.classpath
+.project
+.settings/
