@@ -68,3 +68,7 @@ fastlane/readme.md
 .classpath
 .project
 .settings/
+
+# important things
+*.properties
+

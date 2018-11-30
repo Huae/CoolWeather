@@ -5,7 +5,10 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -24,10 +27,10 @@ import com.huae.coolweather.util.HttpUtil;
 import com.huae.coolweather.util.JSONUtils;
 
 public class ChooseAreaActivity extends Activity {
+	// 常量
 	public static final int LEVEL_PROVINCE = 0;
 	public static final int LEVEL_CITY = 1;
 	public static final int LEVEL_COUNTY = 2;
-
 	// 组件
 	private ProgressDialog progressDialog;
 	private TextView titleText;
@@ -56,9 +59,18 @@ public class ChooseAreaActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// 是否已选择城市
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if(prefs.getBoolean("city_selected", false)){
+			Intent intent = new Intent(this, WeatherActivity.class);
+			startActivity(intent);
+			finish();
+			return;
+		}
 		// 设置隐藏标题栏
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.choose_area);
+		
 		// 初始化控件
 		titleText = (TextView) findViewById(R.id.title_text);
 		listView = (ListView) findViewById(R.id.list_view);
@@ -82,6 +94,13 @@ public class ChooseAreaActivity extends Activity {
 					selectCity = cityList.get(index);
 					// 加载县数据
 					queryCounties();
+				}else if(currentLevel == LEVEL_COUNTY){
+					// 更新天气数据
+					String weatherId = countyList.get(index).getWeatherId();
+					Intent intent = new Intent(ChooseAreaActivity.this, WeatherActivity.class);
+					intent.putExtra("weatherId", weatherId);
+					startActivity(intent);
+					finish();
 				}
 			}
 
