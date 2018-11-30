@@ -84,7 +84,7 @@ public class JSONUtils {
 	 * 解析天气数据
 	 * @param response
 	 */
-	public static void parseWeather(Context context, String response) {
+	public static void parseWeather(Context context, String response, String weatherId) {
 		try {
 			JSONObject jsonObject = new JSONObject(response);
 			JSONObject heWeather0 = jsonObject.getJSONArray("HeWeather").getJSONObject(0);
@@ -99,16 +99,15 @@ public class JSONUtils {
 			String weatherDesc = heWeather0.getJSONObject("now").getString("cond_txt");
 			// 天气
 			String temp = heWeather0.getJSONObject("now").getString("tmp")+"℃";
-			
 			// 保存到本地
-			saveWeather(context, cityName,publishTime,currentTime,weatherDesc,temp);
+			saveWeather(context, cityName,publishTime,currentTime,weatherDesc,temp,weatherId);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private static void saveWeather(Context context, String cityName, String publishTime,
-			String currentTime, String weatherDesc, String temp) {
+			String currentTime, String weatherDesc, String temp,String weatherId) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		Editor editor = prefs.edit();
 		editor.putBoolean("city_selected", true);
@@ -117,6 +116,7 @@ public class JSONUtils {
 		editor.putString("currentTime", currentTime);
 		editor.putString("weatherDesc", weatherDesc);
 		editor.putString("temp", temp);
+		editor.putString("weatherId", weatherId);
 		editor.commit();
 	}
 
