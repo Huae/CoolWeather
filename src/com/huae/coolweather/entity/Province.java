@@ -6,41 +6,23 @@ package com.huae.coolweather.entity;
  * @author huang
  */
 public class Province {
-	private int id;
+	private int provineId;
 	private String provinceName;
-	private String provinceCode;
-
-	public Province() {
-
+	public int getProvineId() {
+		return provineId;
 	}
-
-	public Province(int id, String provinceName, String provinceCode) {
-		this.id = id;
-		this.provinceName = provinceName;
-		this.provinceCode = provinceCode;
+	public void setProvineId(int provineId) {
+		this.provineId = provineId;
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getProvinceName() {
 		return provinceName;
 	}
-
 	public void setProvinceName(String provinceName) {
 		this.provinceName = provinceName;
 	}
-
-	public String getProvinceCode() {
-		return provinceCode;
-	}
-
-	public void setProvinceCode(String provinceCode) {
-		this.provinceCode = provinceCode;
+	public Province(int provineId, String provinceName) {
+		super();
+		this.provineId = provineId;
+		this.provinceName = provinceName;
 	}
 }

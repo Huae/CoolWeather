@@ -1,52 +1,43 @@
 package com.huae.coolweather.entity;
 
 public class County {
-	private int id;
+	private int countyId;
 	private String countyName;
-	private String countyCode;
 	private int cityId;
-
+	private String weatherId;
+	
 	public County() {
-		super();
 	}
-
-	public County(int id, String countyName, String countyCode, int cityId) {
-		super();
-		this.id = id;
-		this.countyName = countyName;
-		this.countyCode = countyCode;
-		this.cityId = cityId;
+	public int getCountyId() {
+		return countyId;
 	}
-
-	public int getId() {
-		return id;
+	public void setCountyId(int countyId) {
+		this.countyId = countyId;
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getCountyName() {
 		return countyName;
 	}
-
 	public void setCountyName(String countyName) {
 		this.countyName = countyName;
 	}
-
-	public String getCountyCode() {
-		return countyCode;
-	}
-
-	public void setCountyCode(String countyCode) {
-		this.countyCode = countyCode;
-	}
-
 	public int getCityId() {
 		return cityId;
 	}
-
 	public void setCityId(int cityId) {
 		this.cityId = cityId;
 	}
+	public String getWeatherId() {
+		return weatherId;
+	}
+	public void setWeatherId(String weatherId) {
+		this.weatherId = weatherId;
+	}
+	public County(int countyId, String countyName, int cityId, String weatherId) {
+		super();
+		this.countyId = countyId;
+		this.countyName = countyName;
+		this.cityId = cityId;
+		this.weatherId = weatherId;
+	}
+	
 }
